@@ -3,7 +3,9 @@
 신용점수(Good / Standard / Poor) 3등급 분류 딥러닝 프로젝트  
 Kaggle Credit Score Classification 데이터를 기반으로 전처리 → EDA → 피처 선택 → TabNet 모델링 전 과정을 수행했습니다.
 
+
 ---
+
 
 ## 📌 프로젝트 개요
 
