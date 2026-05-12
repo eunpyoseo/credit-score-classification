@@ -108,6 +108,7 @@ Poor는 Good 대비 이자율·연체일수·미상환부채가 유의미하게 
 RandomForest (`n_estimators=120`, `max_depth=14`, `class_weight='balanced_subsample'`)의 `feature_importances_`를 기준으로 **중요도 0.001 미만 변수를 노이즈로 제거**, 최종 **51개** 피처 선택
 
 <img width="1969" height="1568" alt="image" src="https://github.com/user-attachments/assets/a07a64c3-2328-462f-9e81-d898edf0b4bd" />
+
 > 📷 `05_rf_feature_importance.png` — RandomForest 기반 Feature Importance Top 25
 
 ### 모델 선택: TabNet
@@ -137,6 +138,7 @@ TabNetClassifier(
 ```
 
 <img width="1969" height="1368" alt="image" src="https://github.com/user-attachments/assets/5ff30c7c-8821-49d3-b6c2-5e43043c221e" />
+
 > 📷 `06_tabnet_feature_importance.png` — TabNet Attention 기반 Feature Importance Top 25
 
 ---
@@ -179,6 +181,7 @@ Macro F1    : 0.8060
 - 권장 기준(75%) **상회**
 
 <img width="1333" height="969" alt="image" src="https://github.com/user-attachments/assets/fc7bd105-8586-4284-8376-fbb25dc2b21d" />
+
 > 📷 `07_confusion_matrix.png` — Confusion Matrix (Acc 80.76% | Weighted F1 0.8076)
 
 ---
