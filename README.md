@@ -126,11 +126,13 @@ TabNetClassifier(
     n_d=32, n_a=32,           # 표현 차원
     n_steps=4,                 # attention step 수 (균형점)
     gamma=1.5,
+    lambda_sparse=1e-4,
     mask_type='entmax',
     optimizer_params=dict(lr=1e-2, weight_decay=1e-5),
     scheduler_fn=StepLR,       # 후반 lr 감소로 수렴 안정화
     scheduler_params={'step_size': 20, 'gamma': 0.9},
-    max_epochs=150, patience=20, batch_size=2048
+    max_epochs=150, patience=20, batch_size=2048,
+    virtual_batch_size=256
 )
 ```
 
@@ -146,7 +148,7 @@ TabNetClassifier(
 | 개선 단계 | 내용 |
 |-----------|------|
 | ① 데이터 누수 제거 | val을 scaler fit에서 완전 분리 → 과낙관 성능 방지 |
-| ② 파생변수 추가 | Debt_to_Income, EMI_to_Salary 등 비율 지표 22개 → 재무 위험 직접 표현 |
+| ② 파생변수 추가 | Debt_to_Income, EMI_to_Salary 등 비율 지표 11개 + Type_of_Loan·Payment_Behaviour 분해 컬럼 11개 = 총 22개 신규 컬럼 → 재무 위험 직접 표현 |
 | ③ 인코딩 개선 | Type_of_Loan 분해 + One-Hot Encoding → LabelEncoding의 잘못된 순서 왜곡 제거 |
 | ④ 클래스 불균형 보정 | `class_weight='balanced'`, `weights=1` → 소수 클래스(Good) 적극 학습 |
 | ⑤ 모델 전략 | TabNet + 조기종료 + StepLR → 과적합 없이 성능 향상 |
@@ -159,7 +161,7 @@ TabNetClassifier(
 
 | 모델 | Accuracy | Weighted F1 | Macro F1 |
 |------|----------|-------------|----------|
-| Baseline MLP | 71.58% | 0.7155 | - |
+| Baseline MLP | 71.58% | 0.7155 | 0.6939 |
 | **Final TabNet** | **80.76%** | **0.8076** | **0.8060** |
 | **개선폭** | **+9.18%p** | **+0.0921** | - |
 
